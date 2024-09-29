@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Parameter;
+
 import org.springframework.stereotype.Service;
-// import java.util.concurrent.ConcurrentHashMap;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+
 import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,8 +20,6 @@ public class ParameterService {
         .maximumSize(10_000)
         .expireAfterWrite(10, TimeUnit.MINUTES)
         .build();
-    
-    // protected ConcurrentHashMap<String, Parameter> cache = new ConcurrentHashMap<>();
 
     public Parameter getParameterById(String id) {
         // Blocks the cache id until the compute method returns
@@ -47,8 +46,8 @@ public class ParameterService {
     public void handleKafkaEvent(Parameter parameter) {
         logger.info("Received kafka parameter: " + parameter);
         cache.put(parameter.getId(), parameter);
-        logger.info("put kafka message");
+        logger.info("put kafka message into cache");
         Parameter parameterCached = cache.getIfPresent(parameter.getId());
-        logger.info("Paqrameter cached: " + parameterCached.getName());
+        logger.info("Parameter cached: " + parameterCached.getName());
     }
 }
