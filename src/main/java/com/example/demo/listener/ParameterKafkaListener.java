@@ -14,6 +14,8 @@ public class ParameterKafkaListener {
 
     @KafkaListener(topics = "parameter-topic", groupId = "parameter-group")
     public void listen(Parameter parameter) {
+        // could use AtomicBoolean to check if the parameter exists in the cache
+        // could use SETNX in redis to check if the parameter exists in the cache
         parameterService.handleKafkaEvent(parameter);
     }
 }
