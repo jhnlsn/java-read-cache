@@ -29,7 +29,7 @@ public class ParameterController {
         // Send out a kafka message that will populate the cache with the parameter
         // The first request to this controller will be populated by the compute method.  Subsequent requests will be populated by the kafka message
         // in the cache
-        CompletableFuture<Void> kafkaFuture = CompletableFuture.runAsync(() -> {
+        CompletableFuture.runAsync(() -> {
             try {
                 // Simulate a delay to overlap with getParameterById
                 
