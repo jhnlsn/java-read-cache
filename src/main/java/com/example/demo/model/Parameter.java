@@ -1,6 +1,10 @@
 package com.example.demo.model;
 
-public class Parameter {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.io.Serializable;
+
+
+public class Parameter implements Serializable {
     private String id;
     private String name;
 
@@ -11,10 +15,12 @@ public class Parameter {
         this.name = name;
     }
 
+    @JsonProperty("id")
     public String getId() {
         return id;
     }
 
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
