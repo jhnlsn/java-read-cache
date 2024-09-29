@@ -1,0 +1,29 @@
+package com.example.demo.model;
+
+public class Parameter {
+    private String id;
+    private String name;
+
+    public Parameter() {}
+
+    public Parameter(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
